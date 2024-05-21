@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-const header = () => {
+const Home = () => {
     
     return (
         <div className="header">
             <div className="container">
-                
+                helo
             </div>
         </div>
     )
 }
 
-export default header
+export default Home
