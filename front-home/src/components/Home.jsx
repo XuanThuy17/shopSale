@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
-import Footer from "./Footer";
-import Header from "./Header/HeaderPage";
+import Footer from "./HeaderFooter/Footer";
+import Header from "./HeaderFooter/HeaderPage";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";

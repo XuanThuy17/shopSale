@@ -8,7 +8,7 @@ import {
   BrowserRouter,
 } from "react-router-dom";
 import Home from "./components/Home";
-import Header from "./components/Header/HeaderPage"; 
+import Header from "./components/HeaderFooter/HeaderPage"; 
 
 import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,7 +27,6 @@ function App(props) {
             <Route exact path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
           </Routes>
-
 
           <Routes>
             <Route path="/Product_detail" element={<Detail_product/>} />
