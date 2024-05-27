@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Cart.scss";
-import Footer from "./Footer";
+import Footer from "./HeaderFooter/Footer";
 const Cart = () => {
   return (
     <>

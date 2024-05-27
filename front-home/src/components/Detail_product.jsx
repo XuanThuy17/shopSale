@@ -4,7 +4,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
 import "./Detail_product.scss";
-import Footer from "./Footer";
+import Footer from "./HeaderFooter/Footer";
 import { Link } from "react-router-dom";
 
 const Detail_product = () => {
