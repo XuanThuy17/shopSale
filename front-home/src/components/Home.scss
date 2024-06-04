@@ -3,6 +3,9 @@
         background-color: #fff;
         position: relative;
         .slider-item {
+            @media (max-width:1024px) {
+                min-height: unset;
+            }
             min-height: 100vh;
             position: relative;
             img {

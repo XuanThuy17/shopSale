@@ -78,9 +78,9 @@ const Header = (props) => {
           <div className="header">
             <div className="group-one">
               <div className="search">
-                <i class="fa-solid fa-bars" onClick={() => handleMenu()}></i>
+                <i className="fa-solid fa-bars" onClick={() => handleMenu()}></i>
                 <i
-                  class="fa-solid fa-magnifying-glass"
+                  className="fa-solid fa-magnifying-glass"
                   onClick={() => handleSearch()}
                 ></i>
               </div>
@@ -94,14 +94,14 @@ const Header = (props) => {
                   class="fa-solid fa-magnifying-glass"
                   onClick={() => handleSearch()}
                 ></i>
-                <i class="fa-solid fa-bag-shopping"></i>
+                <i className="fa-solid fa-bag-shopping"></i>
               </div>
             </div>
             <div className="group-two">
               <ul className="list-menu" role="list">
                 <li>Home</li>
                 <li onClick={toggleSubmenu} ref={submenuRef}>
-                  Shop <i class="fa-solid fa-angle-up"></i>
+                  Shop <i className="fa-solid fa-angle-up"></i>
                   {submenu && (
                     <ul className="submenu">
                       <li>All Products</li>

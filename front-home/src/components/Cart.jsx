@@ -1,9 +1,77 @@
 import { Link } from "react-router-dom";
 import "./Cart.scss";
 import Footer from "./HeaderFooter/Footer";
+import Header from "./HeaderFooter/HeaderPage";
+import { useState } from "react";
+import _ from "lodash";
+
 const Cart = () => {
+  const listDefault = [
+    {
+      id: 1,
+      name: "Sergio Pérez - Unisex t-shirt",
+      image:
+        "https://modernvintageapparel.co/cdn/shop/products/sergio-perez-unisex-t-shirt-466630.jpg?v=1686240485&width=300",
+      price: "150000",
+      color: "Black",
+      size: "S",
+      quantity: "1",
+    },
+    {
+      id: 2,
+      name: "Motor City Dan - Unisex t-shirt",
+      image:
+        "https://modernvintageapparel.co/cdn/shop/products/motor-city-dan-unisex-t-shirt-651688.jpg?v=1682339667&width=300",
+      price: "150000",
+      color: "Black",
+      size: "XL",
+      quantity: "1",
+    },
+  ];
+  const getList = (array) => {
+    let newList = [];
+    array.map((item) => {
+      let object = { ...item, selected: false };
+      newList.push(object);
+    });
+    return newList;
+  };
+
+  const [listCart, setListCart] = useState(getList(listDefault));
+  const [hide, setHide] = useState(false);
+
+  const handleSelect = (type, cart) => {
+    let listClone = _.cloneDeep(listCart);
+    if (type === "All") {
+      let newList = [];
+      listClone.map((item) => {
+        let object = { ...item, selected: !item.selected };
+        newList.push(object);
+      });
+      setListCart(newList);
+    }
+    if (type === "item") {
+      listClone.map((item) => {
+        if (item.id === cart.id) {
+          item.selected = !item.selected;
+        }
+      });
+      setListCart(listClone);
+    }
+  };
+
+  const MultiDelete = () => {
+    let listClone = _.cloneDeep(listCart),
+      data = [];
+    listClone.map((item) => {
+      if (item.selected === true) data.push(item);
+    });
+    console.log("Check: ", data);
+  };
+
   return (
     <>
+      <Header />
       <div className="cart">
         <div className="container">
           <div className="col-12">
@@ -18,92 +86,109 @@ const Cart = () => {
                 <thead>
                   <tr>
                     <th scope="col">Product</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Total</th>
+                    <th scope="col" className="col-none">
+                      Quantity
+                    </th>
+                    <th scope="col" className="col-none">
+                      Total
+                    </th>
+                    <th scope="col" style={{ textAlign: "center"}}>
+                      <button
+                        onClick={() => handleSelect("All", null)}
+                        className="btn-all"
+                      >
+                        Choose all
+                      </button>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="cart-item">
-                    <td scope="row">
-                      <div className="d-flex align-items-start info-product">
-                        <img
-                          className="image-product"
-                          src="https://modernvintageapparel.co/cdn/shop/products/sergio-perez-unisex-t-shirt-466630.jpg?v=1686240485&width=300"
-                        />
-                        <div className="product-name">
-                          <h4>
-                            <Link to="">Sergio Pérez - Unisex t-shirt</Link>
-                          </h4>
-                          <p>$22.99</p>
-                          <p>Color: Black</p>
-                          <p>Size: S</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="d-flex align-items-center justify-content-start">
-                        <div className="option-quantity">
-                          <button>
-                            <i className="fa-solid fa-minus"></i>
-                          </button>
-                          <input readOnly min={1} type="text" value={1} />
-                          <button>
-                            <i className="fa-solid fa-plus"></i>
-                          </button>
-                        </div>
-                        <button className="delete">
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </div>
-                    </td>
-                    <td>
-                      <p>$22.99</p>
-                    </td>
-                  </tr>
-                  <tr className="cart-item">
-                    <td scope="row">
-                      <div className="d-flex align-items-start info-product">
-                        <img
-                          className="image-product"
-                          src="https://modernvintageapparel.co/cdn/shop/products/sergio-perez-unisex-t-shirt-466630.jpg?v=1686240485&width=300"
-                        />
-                        <div className="product-name">
-                          <h4>
-                            <Link to="">Sergio Pérez - Unisex t-shirt</Link>
-                          </h4>
-                          <p>$22.99</p>
-                          <p>Color: Black</p>
-                          <p>Size: S</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="d-flex align-items-center justify-content-start">
-                        <div className="option-quantity">
-                          <button>
-                            <i className="fa-solid fa-minus"></i>
-                          </button>
-                          <input readOnly min={1} type="text" value={1} />
-                          <button>
-                            <i className="fa-solid fa-plus"></i>
-                          </button>
-                        </div>
-                        <button className="delete">
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </div>
-                    </td>
-                    <td>
-                      <p>$22.99</p>
-                    </td>
-                  </tr>
+                  {listCart &&
+                    listCart.length > 0 &&
+                    listCart.map((item, index) => {
+                      return (
+                        <tr className="cart-item" key={index}>
+                          <td scope="row">
+                            <div className="d-flex align-items-start info-product">
+                              <img className="image-product" src={item.image} />
+                              <div className="product-name">
+                                <h4>
+                                  <Link to={item.id}>{item.name}</Link>
+                                </h4>
+                                <p>${item.price}</p>
+                                <p>Color: {item.color}</p>
+                                <p>Size: {item.size}</p>
+                                <div className="cart-responsive d-none">
+                                <p>${item.quantity * item.price}</p>
+                                  <div className="d-flex align-items-center justify-content-start">
+                                    <div className="option-quantity">
+                                      <button>
+                                        <i className="fa-solid fa-minus"></i>
+                                      </button>
+                                      <input
+                                        readOnly
+                                        min={1}
+                                        type="text"
+                                        value={item.quantity}
+                                      />
+                                      <button>
+                                        <i className="fa-solid fa-plus"></i>
+                                      </button>
+                                    </div>
+                                    <button className="delete">
+                                      <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                  </div>
+                                </div>  
+                              </div>
+                            </div>
+                          </td>
+                          <td className="row-none">
+                            <div className="d-flex align-items-center justify-content-start">
+                              <div className="option-quantity">
+                                <button>
+                                  <i className="fa-solid fa-minus"></i>
+                                </button>
+                                <input
+                                  readOnly
+                                  min={1}
+                                  type="text"
+                                  value={item.quantity}
+                                />
+                                <button>
+                                  <i className="fa-solid fa-plus"></i>
+                                </button>
+                              </div>
+                              <button className="delete">
+                                <i class="fa-solid fa-trash"></i>
+                              </button>
+                            </div>
+                          </td>
+                          <td className="row-none">
+                            <p>${item.quantity * item.price}</p>
+                          </td>
+                          <td className="check-td">
+                            <input
+                              onChange={() => handleSelect("item", item)}
+                              type="checkbox"
+                              checked={item.selected}
+                            />
+                          </td>
+                        </tr>
+                      );
+                    })}
                 </tbody>
               </table>
             </div>
           </div>
           <div className="col-12">
             <div className="total-cart">
-              <p>Order special instructions</p>
+              <div className="text-top">
+                <p>Order special instructions</p>
+                <button onClick={() => MultiDelete()} className="btn-multi">
+                  Delete
+                </button>
+              </div>
               <div className="d-flex justify-content-between align-items-start">
                 <div className="text-option">
                   <textarea></textarea>
