@@ -6,6 +6,7 @@ import { Pagination, Navigation } from "swiper/modules";
 import "./Detail_product.scss";
 import Footer from "./HeaderFooter/Footer";
 import { Link } from "react-router-dom";
+import Header from "./HeaderFooter/HeaderPage";
 
 const Detail_product = () => {
   const [quantity, setQuantity] = useState(1);
@@ -121,6 +122,7 @@ const Detail_product = () => {
 
   return (
     <>
+      <Header/>
       <div className="detail-product">
         <div className="container">
           <div className="row">

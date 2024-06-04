@@ -1,0 +1,111 @@
+.checkout {
+    h2 {
+        margin: 0;
+        font-size: 46px;
+        color: #000000;
+        text-align: center;
+    }
+    .info-check {
+        padding: 24px 0;
+        .form-group {
+            position: relative;
+            &:has(.btn-change) {
+                &:hover .btn-change {
+                    opacity: 1;
+                }
+            }
+            .btn-change {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                border: none;
+                background-color: transparent;
+                color: #5433EB;
+                opacity: 0;
+                border-radius: 8px;
+                transition: all 0.3s;
+                transform: translateY(-50%);
+            }
+            h4 {
+                color: #000000;
+            }
+            p{
+                padding: 8px 0;
+                margin: 8px 0 0 0;
+                color: #000000;
+                font-size: 18px;
+                border-bottom: 1px solid #BDBDBD;
+                span {
+                    font-size: 18px;
+                    font-weight: 600;
+                }
+            }
+            .btn-order {
+                padding: 8px 16px;
+                width: 100%;
+                border-radius: 8px;
+                border: 1px solid #5433EB;
+                background-color: #5433EB;
+                color: #ffffff;
+                position: relative;
+                margin: 16px 0;
+                &::after {
+                    display: block;
+                    content: "";
+                    position: absolute;
+                    top: -2px;
+                    left: -2px;
+                    right: -2px;
+                    bottom: -2px;
+                    border-radius: 8px;
+                    border: 3px solid #5433EB;
+                    opacity: 0;
+                }
+                &:hover::after {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .order-check {
+        padding: 24px 0;
+        .d-flex {
+            h4 {
+                color: #000000;
+            }
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+            border-top: 1px solid #BDBDBD;
+            border-bottom: 1px solid #BDBDBD;
+            li {
+                .item-order {
+                    display: flex;
+                    padding: 8px 0;
+                    align-items: center;
+                    justify-content: space-between;
+                    .image {
+                        overflow: hidden;
+                        img {
+                            aspect-ratio: 3/4;
+                            object-fit: contain;
+                            max-width: 100px;
+                        }
+                    }
+                    .info {
+                        p {
+                            margin: 0;
+                            font-size: 18px;
+                            color: #000000;
+                            span {
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -18,6 +18,7 @@ import Cart from "./components/Cart";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import Checkout from "./components/Checkout";
 
 function App(props) {
   return (
@@ -34,6 +35,20 @@ function App(props) {
           <Routes>
             <Route path="/Cart" element={<Cart/>} />
           </Routes>
+          <Routes>
+            <Route path="/Checkout" element={<Checkout/>} />
+          </Routes>
+          <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"/>
         </div>
     </BrowserRouter>
   );

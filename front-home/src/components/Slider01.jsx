@@ -6,10 +6,21 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation, FreeMode } from "swiper/modules";
 import "./Slider.scss";
 import { Link } from "react-router-dom";
+import { Modal } from "react-bootstrap";
+import BuyModal from "./Modal/BuyModal";
 
 const Slider01 = () => {
   const [currentSlide, setCurrentSlide] = useState(1);
   const totalSlides = 4;
+  const [view,setView] = useState(false);
+  const [data,setData] = useState(true);
+  const handleClose = () => {
+    setView(false)
+  };
+  const handleBuy = () => {
+    setView(true)
+  }
+
   return (
     <>
       <div className="list-slider">
@@ -71,7 +82,7 @@ const Slider01 = () => {
                   </h4>
                   <span>$40.99</span>
                   <p>From $22.99 USD</p>
-                  <button>Buy now</button>
+                  <button onClick={()=>handleBuy()}>Buy now</button>
                 </div>
               </Link>
             </SwiperSlide>
@@ -95,7 +106,7 @@ const Slider01 = () => {
                   </h4>
                   <span>$40.99</span>
                   <p>From $22.99 USD</p>
-                  <button>Buy now</button>
+                  <button onClick={()=>handleBuy()}>Buy now</button>
                 </div>
               </Link>
             </SwiperSlide>
@@ -119,7 +130,7 @@ const Slider01 = () => {
                   </h4>
                   <span>$40.99</span>
                   <p>From $22.99 USD</p>
-                  <button>Buy now</button>
+                  <button onClick={()=>handleBuy()}>Buy now</button>
                 </div>
               </Link>
             </SwiperSlide>
@@ -143,7 +154,7 @@ const Slider01 = () => {
                   </h4>
                   <span>$40.99</span>
                   <p>From $22.99 USD</p>
-                  <button>Buy now</button>
+                  <button onClick={()=>handleBuy()}>Buy now</button>
                 </div>
               </Link>
             </SwiperSlide>
@@ -167,7 +178,7 @@ const Slider01 = () => {
                   </h4>
                   <span>$40.99</span>
                   <p>From $22.99 USD</p>
-                  <button>Buy now</button>
+                  <button onClick={()=>handleBuy()}>Buy now</button>
                 </div>
               </Link>
             </SwiperSlide>
@@ -191,7 +202,7 @@ const Slider01 = () => {
                   </h4>
                   <span>$40.99</span>
                   <p>From $22.99 USD</p>
-                  <button>Buy now</button>
+                  <button onClick={()=>handleBuy()}>Buy now</button>
                 </div>
               </Link>
             </SwiperSlide>
@@ -215,7 +226,7 @@ const Slider01 = () => {
                   </h4>
                   <span>$40.99</span>
                   <p>From $22.99 USD</p>
-                  <button>Buy now</button>
+                  <button onClick={()=>handleBuy()}>Buy now</button>
                 </div>
               </Link>
             </SwiperSlide>
@@ -239,7 +250,7 @@ const Slider01 = () => {
                   </h4>
                   <span>$40.99</span>
                   <p>From $22.99 USD</p>
-                  <button>Buy now</button>
+                  <button onClick={()=>handleBuy()}>Buy now</button>
                 </div>
               </Link>
             </SwiperSlide>
@@ -258,6 +269,10 @@ const Slider01 = () => {
           </Swiper>
         </div>
       </div>
+      <BuyModal 
+      view={view}
+      handleCloseBuyModal={handleClose}
+      />
     </>
   );
 };
